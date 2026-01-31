@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>OpenHand OS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script type="importmap">
+{
+  "imports": {
+    "@material/web/": "https://esm.run/@material/web/"
+  }
+}
+</script>
+
+<script type="module">
+  import '@material/web/all.js';
+</script>
+
+<style>
+body {
+  margin:0;
+  font-family: Roboto, sans-serif;
+  background: #f3f6ff;
+}
+
+/* Top bar Material */
+#topbar {
+  height:72px;
+  display:flex;
+  align-items:center;
+  padding:0 24px;
+  font-size:22px;
+  font-weight:500;
+  background:white;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+/* Grid apps */
+#desktop {
+  padding:24px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:20px;
+}
+
+/* Material card wrapper */
+.app-card {
+  cursor:pointer;
+  transition: transform .2s;
+}
+
+.app-card:hover {
+  transform:scale(1.03);
+}
+
+/* App window */
+#app-window {
+  position:fixed;
+  inset:0;
+  background:white;
+  display:none;
+  flex-direction:column;
+  z-index:999;
+}
+
+#app-window.open {
+  display:flex;
+  animation: zoomIn .35s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes zoomIn {
+  from {opacity:0; transform:scale(.96);}
+  to {opacity:1; transform:scale(1);}
+}
+
+#app-frame {
+  flex:1;
+  border:none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="topbar">OpenHand OS</div>
+
+<div id="desktop"></div>
+
+<div id="app-window">
+  <div style="padding:16px">
+    <md-filled-tonal-button onclick="closeApp()">Retour</md-filled-tonal-button>
+  </div>
+  <iframe id="app-frame"></iframe>
+</div>
+
+<script type="module" src="main.js"></script>
+
+</body>
+</html>

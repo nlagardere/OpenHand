@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Horloge OpenHand</title>
+<link rel="stylesheet" href="style.css"> <!-- ton CSS séparé -->
+</head>
+<body>
+
+<div id="c"></div>
+<div id="curseur"></div> <!-- curseur rouge rempli -->
+
+<script>
+const c = document.getElementById('c');
+const curseur = document.getElementById('curseur');
+
+/* Horloge */
+function tick() {
+  c.textContent = new Date().toLocaleTimeString();
+}
+setInterval(tick, 1000);
+tick();
+
+/* Curseur qui suit la souris */
+document.addEventListener('mousemove', e => {
+  const isInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA';
+  curseur.style.display = isInput ? 'none' : 'block';
+  if (!isInput) {
+    curseur.style.left = e.clientX + 'px';
+    curseur.style.top = e.clientY + 'px';
+  }
+});
+
+/* Effet au clic : cercle qui grossit */
+document.addEventListener('mousedown', () => {
+  curseur.style.width = '60px';
+  curseur.style.height = '60px';
+});
+document.addEventListener('mouseup', () => {
+  curseur.style.width = '40px';
+  curseur.style.height = '40px';
+});
+</script>
+
+</body>
+</html>

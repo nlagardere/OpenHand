@@ -1,0 +1,20 @@
+[
+  {
+    "id": "internet",
+    "name": "Internet",
+    "icon": "🌍",
+    "entry": "apps/internet/index.html"
+  },
+  {
+    "id": "photos",
+    "name": "Photos",
+    "icon": "🖼️",
+    "entry": "apps/photos/index.html"
+  },
+  {
+    "id": "musique",
+    "name": "Musique",
+    "icon": "🎵",
+    "entry": "apps/musique/index.html"
+  }
+]

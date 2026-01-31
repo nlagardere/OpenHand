@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>OpenHand OS</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== LOCK SCREEN ===== -->
+
+<div id="lockscreen">
+  <div class="loginBox">
+    <h2>OpenHand OS</h2>
+    <p>Code PIN</p>
+    <input type="password" id="pinInput" maxlength="6">
+    <button onclick="checkPin()">Connexion</button>
+    <div id="pinError"></div>
+  </div>
+</div>
+
+<!-- ===== LOADING (APRES LOGIN) ===== -->
+
+<div id="loadingScreen">
+    Chargement de la session…
+    <div class="loader">
+        <div class="loaderBar"></div>
+    </div>
+</div>
+
+<!-- ===== OS ===== -->
+
+<div id="curseur"></div>
+
+<div id="topbar">
+  <div class="logo">OpenHand</div>
+  <div id="clock"></div>
+</div>
+
+<div id="desktop"></div>
+
+<div id="appWindow">
+  <button onclick="closeApp()">← Retour</button>
+  <iframe id="appFrame"></iframe>
+</div>
+
+<audio id="music" src="musique.mp3"></audio>
+
+<button id="shutdownbtn">Eteindre l'ordinateur</button>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="main.js"></script>
+
+</body>
+</html>

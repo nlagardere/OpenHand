@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Internet",
+    "icon": "🌍",
+    "category": "Communication",
+    "entry": "apps/internet/index.html"
+  },
+  {
+    "name": "Messages",
+    "icon": "📬",
+    "category": "Communication",
+    "entry": "apps/messages/index.html"
+  },
+  {
+    "name": "Photos",
+    "icon": "🖼️",
+    "category": "Souvenirs",
+    "entry": "apps/photos/index.html"
+  },
+  {
+    "name": "Musique",
+    "icon": "🎵",
+    "category": "Divertissement",
+    "entry": "apps/musique/index.html"
+  },
+  {
+    "name": "Radio",
+    "icon": "📻",
+    "category": "Divertissement",
+    "entry": "apps/radio/index.html"
+  },
+  {
+    "name": "Réglages",
+    "icon": "⚙️",
+    "category": "Système",
+    "entry": "apps/settings/index.html"
+  }
+]

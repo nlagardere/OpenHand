@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>OpenHand OS</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ===== CURSEUR ROUGE ===== */
+
+body {
+    cursor: none;
+}
+
+#curseur {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    background: red;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(255,0,0,.7);
+}
+
+
+/* ===== LOADING SCREEN ===== */
+
+#loadingScreen {
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    font-size: 22px;
+}
+
+.loader {
+    margin-top: 20px;
+    width: 180px;
+    height: 8px;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loaderBar {
+    height: 100%;
+    width: 0%;
+    background: #4cafef;
+    animation: loadbar 2.5s linear forwards;
+}
+
+@keyframes loadbar {
+    to { width: 100%; }
+}
+
+
+/* ===== LOCK SCREEN ===== */
+
+#lockscreen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #111, #222);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loginBox {
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    color: white;
+    width: 260px;
+}
+
+.loginBox input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+.loginBox button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    background: #4cafef;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#pinError {
+    margin-top: 10px;
+    color: #ff6b6b;
+}
+
+
+/* ===== SHUTDOWN BUTTON ===== */
+
+#shutdownbtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    background-color: #ff5b5b;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== LOADING ===== -->
+
+<div id="loadingScreen">
+    Démarrage OpenHand OS…
+    <div class="loader">
+        <div class="loaderBar"></div>
+    </div>
+</div>
+
+<!-- ===== LOCK SCREEN ===== -->
+
+<div id="lockscreen">
+  <div class="loginBox">
+    <h2>OpenHand OS</h2>
+    <p>Code PIN</p>
+    <input type="password" id="pinInput" maxlength="6">
+    <button onclick="checkPin()">Connexion</button>
+    <div id="pinError"></div>
+  </div>
+</div>
+
+<!-- ===== OS ===== -->
+
+<div id="curseur"></div>
+
+<div id="topbar">
+  <div class="logo">OpenHand</div>
+  <div id="clock"></div>
+</div>
+
+<div id="desktop"></div>
+
+<div id="appWindow">
+  <button onclick="closeApp()">← Retour</button>
+  <iframe id="appFrame"></iframe>
+</div>
+
+<audio id="music" src="musique.mp3"></audio>
+
+<button id="shutdownbtn">Eteindre l'ordinateur</button>
+
+<!-- ===== SCRIPTS ===== -->
+
+<script>
+
+/* ===== CURSEUR ROUGE TRACKING ===== */
+
+document.addEventListener("mousemove", e => {
+    const c = document.getElementById("curseur");
+    c.style.left = e.clientX + "px";
+    c.style.top = e.clientY + "px";
+});
+
+
+/* ===== FAKE BOOT LOADING ===== */
+
+setTimeout(() => {
+    document.getElementById("loadingScreen").style.display = "none";
+    document.getElementById("lockscreen").style.display = "flex";
+}, 2600);
+
+
+/* ===== PIN LOGIN ===== */
+
+const PIN_CODE = "1234";
+
+function checkPin() {
+    const val = document.getElementById("pinInput").value;
+
+    if (val === PIN_CODE) {
+        document.getElementById("lockscreen").style.display = "none";
+
+        const music = document.getElementById("music");
+        music.play().catch(()=>{});
+
+    } else {
+        document.getElementById("pinError").textContent = "Code incorrect";
+    }
+}
+
+
+/* ===== SHUTDOWN ===== */
+
+document.getElementById("shutdownbtn").addEventListener("click", () => {
+
+    alert("Ordinateur éteint ✅");
+
+    document.getElementById("lockscreen").style.display = "flex";
+
+    const music = document.getElementById("music");
+    music.pause();
+    music.currentTime = 0;
+});
+
+</script>
+
+<script src="main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>OpenHand OS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Material+Symbols+Rounded" rel="stylesheet">
+
+<script type="importmap">
+{
+  "imports": {
+    "@material/web/": "https://esm.run/@material/web/"
+  }
+}
+</script>
+
+<script type="module">
+  import '@material/web/button/filled-tonal-button.js';
+  import '@material/web/card/elevated-card.js';
+</script>
+
+<style>
+body {
+  margin:0;
+  font-family:Roboto, sans-serif;
+  background:#eef2ff;
+}
+
+/* Top bar */
+#topbar {
+  height:72px;
+  display:flex;
+  align-items:center;
+  padding:0 24px;
+  font-size:22px;
+  font-weight:500;
+  background:white;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+/* Desktop grid */
+#desktop {
+  padding:28px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:24px;
+}
+
+/* App cards */
+.app-card {
+  cursor:pointer;
+  transition: transform .18s ease;
+}
+
+.app-card:hover {
+  transform:scale(1.04);
+}
+
+.app-inner {
+  padding:28px;
+  text-align:center;
+}
+
+.icon {
+  font-family: "Material Symbols Rounded";
+  font-size:48px;
+  display:block;
+}
+
+/* App window */
+#appWindow {
+  position:fixed;
+  inset:0;
+  background:white;
+  display:none;
+  flex-direction:column;
+}
+
+#appWindow.open {
+  display:flex;
+  animation: zoom .35s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes zoom {
+  from {opacity:0; transform:scale(.97);}
+  to {opacity:1; transform:scale(1);}
+}
+
+iframe {
+  flex:1;
+  border:none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="topbar">OpenHand OS</div>
+
+<div id="desktop"></div>
+
+<div id="appWindow">
+  <div style="padding:16px">
+    <md-filled-tonal-button onclick="closeApp()">Retour</md-filled-tonal-button>
+  </div>
+  <iframe id="appFrame"></iframe>
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>

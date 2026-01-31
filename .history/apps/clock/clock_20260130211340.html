@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body style="
+font-family:Roboto;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+font-size:64px;
+background:#f6f8ff;
+">
+
+<div id="c"></div>
+
+<script>
+function tick(){
+  c.textContent = new Date().toLocaleTimeString();
+}
+setInterval(tick,1000);
+tick();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Navigateur - OpenHand</title>
+<style>
+body {
+  margin:0;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family: system-ui, sans-serif;
+  background:#f0f2f5;
+}
+
+header {
+  height:70px;
+  display:flex;
+  align-items:center;
+  padding:0 16px;
+  background:#5b7cff;
+  color:white;
+  font-size:20px;
+  font-weight:600;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+  gap:8px;
+}
+
+header input {
+  flex:1;
+  padding:10px 14px;
+  border-radius:14px;
+  border:none;
+  font-size:16px;
+  outline:none;
+}
+
+header button {
+  padding:10px 16px;
+  border:none;
+  border-radius:14px;
+  background:#ffcc00;
+  cursor:pointer;
+  font-weight:600;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <input type="text" id="searchBox" placeholder="Entrez votre recherche…">
+  <button id="searchBtn">🔍</button>
+</header>
+
+<script>
+const searchBox = document.getElementById("searchBox");
+const searchBtn = document.getElementById("searchBtn");
+
+// Choisis ton moteur ici : Google, Bing, DuckDuckGo…
+const searchEngine = "https://www.google.com/search?q=";
+
+// Recherche
+searchBtn.addEventListener("click", () => {
+  const query = encodeURIComponent(searchBox.value.trim());
+  if(query) {
+    // Ouvre dans un nouvel onglet / fenêtre
+    window.open(searchEngine + query, "_blank");
+  }
+});
+
+// Recherche au Enter
+searchBox.addEventListener("keydown", (e) => {
+  if(e.key === "Enter") searchBtn.click();
+});
+</script>
+
+</body>
+</html>

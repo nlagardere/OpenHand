@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Navigateur - OpenHand</title>
+<style>
+body {
+  margin:0;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family: system-ui, sans-serif;
+  background:#f0f2f5;
+}
+
+header {
+  height:70px;
+  display:flex;
+  align-items:center;
+  padding:0 16px;
+  background:#5b7cff;
+  color:white;
+  font-size:20px;
+  font-weight:600;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+  gap:8px;
+}
+
+header input {
+  flex:1;
+  padding:10px 14px;
+  border-radius:14px;
+  border:none;
+  font-size:16px;
+  outline:none;
+}
+
+header button {
+  padding:10px 16px;
+  border:none;
+  border-radius:14px;
+  background:#ffcc00;
+  cursor:pointer;
+  font-weight:600;
+}
+
+#iframeContainer {
+  flex:1;
+  display:flex;
+}
+
+#iframeContainer iframe {
+  width:100%;
+  height:100%;
+  border:none;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <input type="text" id="searchBox" placeholder="Entrez votre recherche…">
+  <button id="searchBtn">🔍</button>
+  <button id="homeBtn">🏠</button>
+</header>
+
+<div id="iframeContainer">
+  <iframe id="browserFrame" src=""></iframe>
+</div>
+
+<script>
+const searchBox = document.getElementById("searchBox");
+const searchBtn = document.getElementById("searchBtn");
+const homeBtn = document.getElementById("homeBtn");
+const browserFrame = document.getElementById("browserFrame");
+
+// Choisis ton moteur ici
+const searchEngine = "https://www.google.com/search?q=";
+
+// Rechercher à partir de l’input
+searchBtn.addEventListener("click", () => {
+  const query = encodeURIComponent(searchBox.value.trim());
+  if(query) {
+    browserFrame.src = searchEngine + query;
+  }
+});
+
+// Rechercher en appuyant sur Enter
+searchBox.addEventListener("keydown", (e) => {
+  if(e.key === "Enter") searchBtn.click();
+});
+
+// Bouton home → retour au vide
+homeBtn.addEventListener("click", () => {
+  browserFrame.src = "";
+  searchBox.value = "";
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Internet</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<h1>🌍 Internet</h1>
+
+<input id="url" placeholder="Entrer un site (ex : google.fr)">
+<button onclick="go()">Aller</button>
+
+<script>
+function go() {
+  const url = document.getElementById("url").value;
+  if (url) location.href = "https://" + url;
+}
+</script>
+
+</body>
+</html>

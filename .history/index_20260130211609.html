@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>OpenHand OS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Material+Symbols+Rounded" rel="stylesheet">
+
+<!-- ✅ Material Web via esm.run (OFFICIEL RECOMMANDÉ) -->
+<script type="importmap">
+{
+  "imports": {
+    "@material/web/": "https://esm.run/@material/web/"
+  }
+}
+</script>
+
+<script type="module">
+  import '@material/web/card/elevated-card.js';
+  import '@material/web/button/filled-tonal-button.js';
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="topbar">OpenHand OS</div>
+
+<div id="desktop"></div>
+
+<div id="appWindow">
+  <div id="appBar">
+    <md-filled-tonal-button onclick="closeApp()">Retour</md-filled-tonal-button>
+  </div>
+  <iframe id="appFrame"></iframe>
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
